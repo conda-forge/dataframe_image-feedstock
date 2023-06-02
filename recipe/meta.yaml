@@ -1,5 +1,5 @@
 {% set name = "dataframe_image" %}
-{% set version = "0.1.1" %}
+{% set version = "0.1.11" %}
 
 
 package:
