@@ -41,8 +41,7 @@ requirements:
 test:
   imports:
     - dataframe_image
-    - dataframe_image.convert
-    - dataframe_image.export
+    - dataframe_image.converter
   commands:
     - pip check
     - dataframe_image --help
