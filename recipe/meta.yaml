@@ -1,5 +1,5 @@
 {% set name = "dataframe_image" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.6" %}
 
 
 package:
@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8d6739da53c66bd557f217237bab45943a452760b808bb7a3e635a939eed0bb5
+  url: https://files.pythonhosted.org/packages/8c/ab/9a55827fc83e7018ebb79d409f83118ab515d270c5c9dcb12e529f782084/{{ name }}-{{ version }}-py3-none-any.whl
+  sha256: c4ab8dced60976efddd13c3be51c2f9929816fc1e547e29443729a2fdce22150
 
 build:
   number: 0
@@ -20,20 +20,27 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python >=3.8
   run:
-    - aiohttp
+    - aiohttp >=3.10.2
     - beautifulsoup4
+    - cssselect
+    - cssutils
+    - html2image
+    - lxml
     - matplotlib-base >=3.1
+    - mistune
     - nbconvert >=5
     - pandas >=0.24
-    - python >=3.6
+    - pillow
+    - python >=3.8
     - requests
 
 test:
   imports:
     - dataframe_image
-    - tests
+    - dataframe_image.convert
+    - dataframe_image.export
   commands:
     - pip check
     - dataframe_image --help
