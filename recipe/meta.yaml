@@ -16,7 +16,7 @@ build:
   noarch: python
   entry_points:
     - dataframe_image=dataframe_image._command_line:main
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install {{ name }}-{{ version }}-py3-none-any.whl -vv
 
 requirements:
   host:
