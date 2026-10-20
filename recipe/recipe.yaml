@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  version: "0.2.7"
+
+package:
+  name: dataframe_image
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dexplo/dataframe_image/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 6d96368cbf64e8291587242bd6442ed2961cc021a06d2ccf1d309fe460e77831
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - dataframe_image=dataframe_image._command_line:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - aiohttp
+    - beautifulsoup4
+    - cssselect
+    - cssutils
+    - lxml
+    - matplotlib-base >=3.1
+    - mistune
+    - nbconvert >=5
+    - pandas >=0.24
+    - packaging
+    - pillow
+    - playwright-python
+    - python >=${{ python_min }}
+    - requests
+
+tests:
+  - python:
+      imports:
+        - dataframe_image
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - '*'
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - dataframe_image --help
+
+about:
+  summary: Embed pandas DataFrames as images in pdf and markdown files when converting from Jupyter Notebooks
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/dexplo/dataframe_image
+
+extra:
+  recipe-maintainers:
+    - tdpetrou
+    - jsmolic
